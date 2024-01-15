@@ -241,7 +241,13 @@ def eval_metrics(
     )
 
 
-def plot_score_distributions(y_score: np.ndarray, y_label: np.ndarray, out_path: str, name_suffix: str = ""):
+def plot_score_distributions(
+        y_score: np.ndarray,
+        y_label: np.ndarray,
+        out_path: str,
+        n_data: int | None = None, 
+        name_suffix: str = ""
+):
     """Plots and saves the score distributions for signal and background as a histogram.
 
     Parameters
@@ -278,6 +284,8 @@ def plot_score_distributions(y_score: np.ndarray, y_label: np.ndarray, out_path:
     plt.ylabel("A.U.")
     plt.yscale("log")
     plt.legend()
+    if n_data is not None:
+        plt.title(f"Signal/Backgournd score distribution for {n_data} data points")
     plt.savefig(f"{out_path}/score_distribution_{name_suffix}.pdf")
     plt.clf()
     print("\n Saving score distributions for signal and background " + tcols.SPARKS)
