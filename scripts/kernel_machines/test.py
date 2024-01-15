@@ -40,6 +40,8 @@ def main(args: dict):
         Number of k-validation/test folds used.
     mod_quantum_instance: bool
         Reconfigure the quantum " "instance and backend.
+    unsup: bool
+        Flag to choose between unsupervised and supervised models.
     config_file: str
         Private configuration file for IBMQ API token
     """
@@ -172,6 +174,11 @@ def get_arguments() -> dict:
         help="Reconfigure the quantum " "instance and backend.",
     )
     parser.add_argument(
+        "--unsup",
+        action="store_true",
+        help="Flag to choose between unsupervised and supervised models",
+    )
+    parser.add_argument(
         '--config_file',
         type=str,
         help="Private configuation file for IBMQ API token"
@@ -187,6 +194,7 @@ def get_arguments() -> dict:
         "kfolds": args.kfolds,
         "mod_quantum_instance": args.mod_quantum_instance,
         "config_file": args.config_file,
+        "unsup": args.unsup,
     }
     return args
 

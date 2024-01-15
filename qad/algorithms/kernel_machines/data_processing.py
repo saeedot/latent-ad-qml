@@ -42,7 +42,7 @@ def get_data(args: dict) -> Tuple:
         )
         train_loader = None
 
-    test_loader = get_test_dataset(x_sig, x_bkg_test, args["ntest"])  # , args["unsup"])
+    test_loader = get_test_dataset(x_sig, x_bkg_test, args["ntest"] , args["unsup"])
     return train_loader, test_loader
 
 
@@ -169,8 +169,8 @@ def get_test_dataset(
         The corresponding labels. In the unsupervised case = `None`.
     """
     if is_unsup:
-        sig = sig[: int(ntest * 0.05)]
-        bkg_test = bkg_test[: int(ntest * 0.95)]
+        sig = sig[: int(ntest * 0.1)]
+        bkg_test = bkg_test[: int(ntest * 0.9)]
         y_data_test = create_output_y(n=(len(sig), len(bkg_test)))
         print(f"Signal shape {sig.shape} and Background shape {bkg_test.shape}")
     else:
