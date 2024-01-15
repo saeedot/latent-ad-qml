@@ -115,6 +115,7 @@ def main(args: dict):
 
         if isinstance(model, OneClassQSVM):
             np.save(output_path + f"kernel_matrix_test.npy", model._kernel_matrix_test)
+        util.plot_score_distributions(scores_all, test_labels, output_path, 'test')
         scores_time_fina = perf_counter()
     exec_time = scores_time_fina - scores_time_init
     print(
