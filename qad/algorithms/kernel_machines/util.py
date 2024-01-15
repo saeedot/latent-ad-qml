@@ -285,7 +285,7 @@ def plot_score_distributions(
     plt.yscale("log")
     plt.legend()
     if n_data is not None:
-        plt.title(f"Signal/Backgournd score distribution for {n_data} data points")
+        plt.title(f"Signal/Background score distribution for {n_data} data points")
     plt.savefig(f"{out_path}/score_distribution_{name_suffix}.pdf")
     plt.clf()
     print("\n Saving score distributions for signal and background " + tcols.SPARKS)

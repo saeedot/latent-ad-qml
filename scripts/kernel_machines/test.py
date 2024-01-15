@@ -14,6 +14,8 @@ from qiskit_machine_learning.kernels import QuantumKernel
 
 from qad.algorithms.kernel_machines.one_class_qsvm import OneClassQSVM
 
+def get_scores(model, data):
+    return model.decision_function(data)
 
 def main(args: dict):
     """Asesses the performance of the trained models using k-fold testing.
@@ -89,9 +91,6 @@ def main(args: dict):
         scores_time_fina = perf_counter()
     else:
         print(f"Multiple k={args['kfolds']} folds...")
-
-        def get_scores(model, data):
-            return model.decision_function(data)
 
         with ProcessPoolExecutor() as executor:
             sig_workers = [executor.submit(get_scores, model, fold) for fold in sig_fold]
