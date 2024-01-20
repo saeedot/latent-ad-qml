@@ -9,6 +9,7 @@ from .data_processing import (
     create_output_y,
     get_kfold_data,
     split_sig_bkg,
+    shuffle_data,
 )
 
 from .feature_map_circuits import (

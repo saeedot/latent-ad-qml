@@ -91,6 +91,36 @@ def reshaper(array: np.ndarray) -> np.ndarray:
     return array
 
 
+def shuffle_data(
+    featuers: np.ndarray,
+    labels: np.ndarray,
+    seed: int = 42
+) -> Tuple[np.ndarray, np.ndarray]:
+    """
+    Shuffles the dataset.
+    returns shuffled data.
+    does not modify input arrays.
+    
+    Parameters
+    ----------
+    features: :class:`np.ndarray`
+        Input features of shape (n_samples, n_features).
+    labels: :class:`np.ndarray`
+        labels corresponding to the features of shape (n).
+    seed:
+        seed to randomly shuffle the data with.
+    """
+    copy_features = featuers.copy()
+    copy_labels = labels.reshape(len(labels), 1)
+    #merge features and labels to keep correspondence
+    merged = np.concatenate((copy_features, copy_labels), axis=1)
+    np.random.seed(seed)
+    np.random.shuffle(merged)
+    shuffled_features = merged[:, :featuers.shape[1]]
+    shuffled_labels = merged[:, featuers.shape[1]]
+    return shuffled_features, shuffled_labels
+
+
 def get_train_dataset(
     sig: np.ndarray,
     bkg: np.ndarray,

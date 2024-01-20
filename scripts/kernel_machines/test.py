@@ -48,7 +48,7 @@ def main(args: dict):
         Private configuration file for IBMQ API token
     """
     _, test_loader = data_processing.get_data(args)
-    test_features, test_labels = test_loader[0], test_loader[1]
+    test_features, test_labels = data_processing.shuffle_data(test_loader[0], test_loader[1])
     sig_fold, bkg_fold = data_processing.get_kfold_data(
         test_features, test_labels, args["kfolds"]
     )
